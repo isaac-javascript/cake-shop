@@ -44,6 +44,11 @@ router.post('/', (req, res, next) => {
     next(createError(404, 'Invalid parameter'));
     return;
   }
+  const cake = findCake(name);
+  if(cake) {
+    next(createError(404, `cake already exists: ${name}`));
+    return;
+  }
   cakes.push({
     name,
     price,
